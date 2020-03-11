@@ -70,5 +70,23 @@ let appData = {
       optExpenses = prompt('Статья необязательных расходов?');
       appData.optionalExpenses[i] = optExpenses;
     }
-  }
+  },
+  chooseIncome: function() {
+    let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '');
+    if(typeof(items) != 'string' || items == '' || typeof(items) == null) {
+      console.log("Вы ввели некорректные данные или не ввели их вовсе");
+    } else {
+      appData.income = items.split(', ');
+      appData.income.push(prompt('Может что-то еще?'));
+      appData.income.sort();
+    }
+
+    appData.income.forEach(function(item, index, array) {
+      alert("Способы доп. заработка: " + (index+1) + " - " + item);
+    });
+  },
 };
+
+for (let key in appData) {
+  console.log("Наша программа включает в себя данные: " + key + " - " + appData[key]);
+}
